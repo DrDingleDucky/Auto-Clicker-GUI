@@ -6,7 +6,7 @@ An auto-clicker made with customtkinter.
 
 ## Python Version
 
-This project was developed using Python 3.10.10.
+This project was developed using Python 3.12.0.
 
 ## Install Dependencies
 

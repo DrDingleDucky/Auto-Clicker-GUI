@@ -1,4 +1,5 @@
-customtkinter==4.6.3
+customtkinter==5.2.1
 darkdetect==0.8.0
+packaging==23.2
 pynput==1.7.6
 six==1.16.0
