@@ -141,13 +141,16 @@ def keyboard_listener(app, clicker):
 
 def main():
     app = App()
+
     clicker = Clicker()
     clicker_thread = threading.Thread(target=clicker.clicker, args=(app,))
     clicker_thread.daemon = True
     clicker_thread.start()
+
     keyboard_listener_thread = threading.Thread(target=keyboard_listener, args=(app, clicker))
     keyboard_listener_thread.daemon = True
     keyboard_listener_thread.start()
+    
     app.mainloop()
 
 
