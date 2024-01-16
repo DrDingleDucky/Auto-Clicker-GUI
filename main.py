@@ -28,16 +28,16 @@ class App(customtkinter.CTk):
         self.top_frame = customtkinter.CTkFrame(master=self)
         self.top_frame.place(anchor="n", x=250, y=10, w=480, h=120)
 
-        self.delay_lable = customtkinter.CTkLabel(master=self.top_frame, textvariable=self.delay)
-        self.delay_lable.place(anchor="n", x=240, y=10)
+        self.delay_label = customtkinter.CTkLabel(master=self.top_frame, textvariable=self.delay)
+        self.delay_label.place(anchor="n", x=240, y=10)
 
         self.delay_slider = customtkinter.CTkSlider(master=self.top_frame, from_=10, to=1000,
                                                     command=lambda delay: self.delay.set(f"Click Delay ({round(delay / 1000, 2)})"))
         self.delay_slider.place(anchor="n", x=240, y=40, w=460, h=20)
         self.delay_slider.set(60)
 
-        self.offset_lable = customtkinter.CTkLabel(master=self.top_frame, textvariable=self.offset)
-        self.offset_lable.place(anchor="n", x=240, y=60)
+        self.offset_label = customtkinter.CTkLabel(master=self.top_frame, textvariable=self.offset)
+        self.offset_label.place(anchor="n", x=240, y=60)
 
         self.offset_slider = customtkinter.CTkSlider(master=self.top_frame, from_=0, to=1000,
                                                      command=lambda delay: self.offset.set(f"Random Offset ({round(delay / 1000, 2)})"))
@@ -53,8 +53,8 @@ class App(customtkinter.CTk):
         self.left_button_frame = customtkinter.CTkFrame(master=self.left_main_button_frame)
         self.left_button_frame.place(anchor="w", x=10, y=25, w=97.5, h=30)
 
-        self.left_button_lable = customtkinter.CTkLabel(master=self.left_button_frame, text="Hotkey")
-        self.left_button_lable.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
+        self.left_button_label = customtkinter.CTkLabel(master=self.left_button_frame, text="Hotkey")
+        self.left_button_label.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
 
         self.left_hotkey_entry = customtkinter.CTkEntry(master=self.left_main_button_frame, textvariable=self.left_hotkey)
         self.left_hotkey_entry.place(anchor="e", x=215, y=25, w=97.5, h=30)
@@ -65,8 +65,8 @@ class App(customtkinter.CTk):
         self.left_mouse_button_frame = customtkinter.CTkFrame(master=self.left_main_mouse_button_frame)
         self.left_mouse_button_frame.place(anchor="w", x=10, y=25, w=97.5, h=30)
 
-        self.left_mouse_button_lable = customtkinter.CTkLabel(master=self.left_mouse_button_frame, text="Mouse Button")
-        self.left_mouse_button_lable.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
+        self.left_mouse_button_label = customtkinter.CTkLabel(master=self.left_mouse_button_frame, text="Mouse Button")
+        self.left_mouse_button_label.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
 
         self.left_button_label = customtkinter.CTkLabel(master=self.left_main_mouse_button_frame, text="Left")
         self.left_button_label.place(anchor="e", x=215, y=25, w=97.5, h=30)
@@ -80,8 +80,8 @@ class App(customtkinter.CTk):
         self.right_button_frame = customtkinter.CTkFrame(master=self.right_main_button_frame)
         self.right_button_frame.place(anchor="w", x=10, y=25, w=97.5, h=30)
 
-        self.right_button_lable = customtkinter.CTkLabel(master=self.right_button_frame, text="Hotkey")
-        self.right_button_lable.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
+        self.right_button_label = customtkinter.CTkLabel(master=self.right_button_frame, text="Hotkey")
+        self.right_button_label.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
 
         self.right_hotkey_entry = customtkinter.CTkEntry(master=self.right_main_button_frame, textvariable=self.right_hotkey)
         self.right_hotkey_entry.place(anchor="e", x=215, y=25, w=97.5, h=30)
@@ -92,8 +92,8 @@ class App(customtkinter.CTk):
         self.right_mouse_button_frame = customtkinter.CTkFrame(master=self.right_main_mouse_button_frame)
         self.right_mouse_button_frame.place(anchor="w", x=10, y=25, w=97.5, h=30)
 
-        self.right_mouse_button_lable = customtkinter.CTkLabel(master=self.right_mouse_button_frame, text="Mouse Button")
-        self.right_mouse_button_lable.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
+        self.right_mouse_button_label = customtkinter.CTkLabel(master=self.right_mouse_button_frame, text="Mouse Button")
+        self.right_mouse_button_label.place(anchor="center", x=48.75, y=15, w=97.5, h=20)
 
         self.right_button_label = customtkinter.CTkLabel(master=self.right_main_mouse_button_frame, text="right")
         self.right_button_label.place(anchor="e", x=215, y=25, w=97.5, h=30)
@@ -142,12 +142,12 @@ def keyboard_listener(app, clicker):
 def main():
     app = App()
     clicker = Clicker()
-    clicker_thred = threading.Thread(target=clicker.clicker, args=(app,))
-    clicker_thred.daemon = True
-    clicker_thred.start()
-    keyboard_listener_thred = threading.Thread(target=keyboard_listener, args=(app, clicker))
-    keyboard_listener_thred.daemon = True
-    keyboard_listener_thred.start()
+    clicker_thread = threading.Thread(target=clicker.clicker, args=(app,))
+    clicker_thread.daemon = True
+    clicker_thread.start()
+    keyboard_listener_thread = threading.Thread(target=keyboard_listener, args=(app, clicker))
+    keyboard_listener_thread.daemon = True
+    keyboard_listener_thread.start()
     app.mainloop()
 
 
