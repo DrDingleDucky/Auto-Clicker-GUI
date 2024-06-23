@@ -19,5 +19,3 @@ Set the random offset to give the time between clicks some randomness. If the cl
 To set letters, symbols, and numbers to hotkeys, they will need an apostrophe around them. Examples: 'x', '7', and '='.
 
 Modifier and function Key assignments must begin with the word "Key". Examples: Key.f6, Key.shift, Key.shift_r, Key.ctrl_l, and Key.enter.
-
-This project is meant to show off the GUI, I don't know why you would use an auto clicker made in Python.
