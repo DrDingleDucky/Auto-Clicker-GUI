@@ -22,7 +22,7 @@ class App(customtkinter.CTk):
         self.left_hotkey = customtkinter.StringVar(self, "'x'")
         self.right_hotkey = customtkinter.StringVar(self, "Key.ctrl_l")
 
-        self.delay = customtkinter.StringVar(self, f"Click Delay (0.06)")
+        self.delay = customtkinter.StringVar(self, f"Click Delay (0.085)")
         self.offset = customtkinter.StringVar(self, f"Random Offset (0.04)")
 
         self.top_frame = customtkinter.CTkFrame(master=self)
@@ -34,7 +34,7 @@ class App(customtkinter.CTk):
         self.delay_slider = customtkinter.CTkSlider(master=self.top_frame, from_=10, to=1000,
                                                     command=lambda delay: self.delay.set(f"Click Delay ({round(delay / 1000, 2)})"))
         self.delay_slider.place(anchor="n", x=240, y=40, w=460, h=20)
-        self.delay_slider.set(60)
+        self.delay_slider.set(float(self.delay.get()[13:-1]) * 1000)
 
         self.offset_label = customtkinter.CTkLabel(master=self.top_frame, textvariable=self.offset)
         self.offset_label.place(anchor="n", x=240, y=60)
@@ -42,7 +42,7 @@ class App(customtkinter.CTk):
         self.offset_slider = customtkinter.CTkSlider(master=self.top_frame, from_=0, to=1000,
                                                      command=lambda delay: self.offset.set(f"Random Offset ({round(delay / 1000, 2)})"))
         self.offset_slider.place(anchor="n", x=240, y=90, w=460, h=20)
-        self.offset_slider.set(40)
+        self.offset_slider.set(float(self.offset.get()[15:-1]) * 1000)
 
         self.middle_frame_top = customtkinter.CTkFrame(master=self)
         self.middle_frame_top.place(anchor="center", x=250, y=175, w=480, h=70)
